@@ -61,3 +61,35 @@ h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; }
   .hero-content { padding-left: 6%; max-width: 90%; }
   .hero-content h1 { font-size: clamp(2rem, 9vw, 3rem); }
 }
+
+/* The Beginning */
+#beginning {
+  min-height: 100vh;
+  background: var(--ink-black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 8%;
+  gap: 60px;
+}
+.beginning-content { max-width: 650px; width: 100%; }
+.chat-line {
+  font-size: 1.3rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+  min-height: 1.5em;
+  border-right: 2px solid transparent;
+}
+.chat-line.prompt { color: var(--warm-ivory); opacity: 0.65; font-style: italic; }
+.chat-line.reply { color: var(--muted-gold); font-weight: 500; }
+.chat-line.typing { border-right: 2px solid var(--muted-gold); }
+
+.beginning-photo {
+  max-width: 380px; width: 100%;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+.beginning-photo.visible { opacity: 1; transform: translateY(0); }
+.beginning-photo img { width: 100%; border-radius: 4px; display: block; }
