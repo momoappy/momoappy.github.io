@@ -7,15 +7,26 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap">
 
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="loader">
-  <div id="loader-line"></div>
+<div id="version-tag">v1.0</div>
+
+<div id="boot-screen">
+  <div class="boot-window">
+    <div class="boot-titlebar">
+      <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+      <span class="boot-tab">us.exe</span>
+    </div>
+    <div class="boot-body">
+      <div id="boot-lines"></div>
+      <div id="boot-prompt" class="boot-prompt" style="display:none;">press enter to continue<span class="cursor">_</span></div>
+    </div>
+  </div>
 </div>
 
 <section id="hero">
@@ -28,17 +39,23 @@
 </section>
 
 <section id="beginning">
-  <div class="beginning-content">
-    <div class="prompt-card">
+  <p class="beginning-intro">// who knew downloading (and deleting) hinge for the 100th time would end in a soulmate</p>
+
+  <div class="drag-wrap">
+    <div class="drag-card">
       <span class="prompt-label">Unusual skills</span>
-      <p class="prompt-text" data-text="dad jokes, tax fraud, origami, dead body disposal, embroidery, identity theft, skateboarding"></p>
+      <p class="prompt-text">dad jokes, tax fraud, origami, dead body disposal, embroidery, identity theft, skateboarding</p>
+      <span class="drag-hint">drag me →</span>
     </div>
+  </div>
+
+  <div class="beginning-after">
     <div class="reply-bubble">
       <p class="reply-text" data-text="Marry me. Right now. Just do it, don't think about it too much."></p>
     </div>
-  </div>
-  <div class="beginning-photo">
-    <img src="images/video-call.jpg" alt="">
+    <div class="beginning-photo">
+      <img src="images/video-call.jpg" alt="">
+    </div>
   </div>
 </section>
 
@@ -47,7 +64,7 @@
     <img src="images/car.jpg" alt="">
   </div>
   <div class="fullbleed-caption">
-    <p>June 19th, 2021. He waited outside in his car, and we just... talked.</p>
+    <p>June 19th, 2021. Your car, parked outside my house. Neither of us brave enough to actually drive anywhere.</p>
   </div>
 </section>
 
@@ -56,14 +73,14 @@
     <span class="date-old">06.19</span>
     <span class="date-new">07.19</span>
   </div>
-  <p class="onemonth-line">The day he was born. The day we began.</p>
+  <p class="onemonth-line">The day you were born. The day we began. Still the best thing that's happened to me every July.</p>
   <div class="onemonth-photo">
     <img src="images/balcony.jpg" alt="">
   </div>
 </section>
 
 <section id="fiveyears">
-  <p>The most wonderful five years of my life.</p>
+  <p>// to be continued...</p>
 </section>
 
 <script src="script.js"></script>

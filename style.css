@@ -1,7 +1,7 @@
 :root {
   --ink-black: #0B0B0C;
   --warm-ivory: #F3EEE4;
-  --muted-gold: #C9A567;
+  --amber: #D9944A;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -12,14 +12,37 @@ body {
 }
 h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; }
 
-#loader {
-  position: fixed; inset: 0; background: var(--ink-black); z-index: 999;
-  display: flex; align-items: center; justify-content: center;
-  transition: opacity 0.8s ease;
+#version-tag {
+  position: fixed; top: 18px; right: 18px; z-index: 500;
+  font-family: 'JetBrains Mono', monospace; font-size: 12px;
+  color: var(--amber); opacity: 0.7; letter-spacing: 0.05em;
 }
-#loader-line { width: 0%; height: 1px; background: var(--muted-gold); animation: drawLine 1.4s ease forwards; }
-@keyframes drawLine { from { width: 0%; } to { width: 140px; } }
-#loader.fade-out { opacity: 0; pointer-events: none; }
+
+/* Boot screen */
+#boot-screen {
+  position: fixed; inset: 0; background: var(--ink-black); z-index: 999;
+  display: flex; align-items: center; justify-content: center; padding: 24px;
+  transition: opacity 0.7s ease;
+}
+#boot-screen.fade-out { opacity: 0; pointer-events: none; }
+.boot-window {
+  width: 100%; max-width: 560px;
+  border: 1px solid rgba(243,238,228,0.15); border-radius: 10px;
+  overflow: hidden; background: rgba(243,238,228,0.03);
+}
+.boot-titlebar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px; background: rgba(243,238,228,0.05);
+  border-bottom: 1px solid rgba(243,238,228,0.1);
+}
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.dot-red { background: #E2554F; } .dot-yellow { background: #E6B450; } .dot-green { background: #59B26D; }
+.boot-tab { margin-left: 12px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--warm-ivory); opacity: 0.6; }
+.boot-body { padding: 24px; min-height: 220px; font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.8; }
+.boot-line { color: var(--warm-ivory); opacity: 0.9; white-space: pre-wrap; }
+.boot-prompt { margin-top: 18px; color: var(--amber); }
+.cursor { animation: blink 1s step-start infinite; }
+@keyframes blink { 50% { opacity: 0; } }
 
 #hero {
   position: relative; height: 100vh; width: 100%;
@@ -29,7 +52,7 @@ h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; }
 .hero-overlay { position: absolute; inset: 0; background: rgba(11,11,12,0.78); }
 .hero-content { position: relative; z-index: 2; padding-left: 8%; max-width: 600px; }
 .hero-content h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; margin-bottom: 1.2rem; }
-.hero-content p { font-size: 1.1rem; color: var(--muted-gold); }
+.hero-content p { font-size: 1.1rem; color: var(--amber); }
 #scroll-hint {
   position: absolute; bottom: 40px; left: 8%; width: 1px; height: 50px;
   background: var(--warm-ivory); animation: pulseHint 2s ease-in-out infinite;
@@ -44,32 +67,35 @@ h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; }
 #beginning {
   min-height: 100vh; background: var(--ink-black);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 100px 8%; gap: 60px;
+  padding: 100px 8%; gap: 40px; text-align: center;
 }
-.beginning-content { max-width: 650px; width: 100%; }
-.prompt-card {
+.beginning-intro { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; color: var(--warm-ivory); opacity: 0.55; max-width: 500px; }
+.drag-wrap { width: 100%; max-width: 380px; display: flex; justify-content: center; }
+.drag-card {
   background: rgba(243, 238, 228, 0.06);
   border: 1px solid rgba(243, 238, 228, 0.15);
-  border-radius: 18px; padding: 24px 28px; margin-bottom: 28px;
+  border-radius: 18px; padding: 28px 26px; width: 100%;
+  cursor: grab; touch-action: none; user-select: none;
 }
+.drag-card:active { cursor: grabbing; }
 .prompt-label {
   display: block; font-size: 0.75rem; text-transform: uppercase;
-  letter-spacing: 0.12em; color: var(--muted-gold); margin-bottom: 10px;
+  letter-spacing: 0.12em; color: var(--amber); margin-bottom: 10px;
 }
-.prompt-text { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.15rem; color: var(--warm-ivory); opacity: 0.85; min-height: 1.5em; }
+.prompt-text { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.1rem; color: var(--warm-ivory); opacity: 0.9; }
+.drag-hint { display: block; margin-top: 16px; font-size: 0.75rem; color: var(--amber); opacity: 0.7; }
+.beginning-after {
+  display: flex; flex-direction: column; align-items: center; gap: 40px;
+  opacity: 0; max-height: 0; overflow: hidden; transition: opacity 0.6s ease;
+}
+.beginning-after.visible { opacity: 1; max-height: 1000px; overflow: visible; }
 .reply-bubble {
-  background: var(--muted-gold); border-radius: 18px 18px 4px 18px;
-  padding: 18px 24px; margin-left: auto; max-width: 80%; width: fit-content;
-  opacity: 0; transform: translateY(10px); transition: opacity 0.6s ease, transform 0.6s ease;
+  background: var(--amber); border-radius: 18px 18px 4px 18px;
+  padding: 18px 24px; max-width: 380px; width: fit-content;
 }
-.reply-bubble.visible { opacity: 1; transform: translateY(0); }
-.reply-text { font-family: 'General Sans', sans-serif; font-weight: 600; font-size: 1.15rem; color: var(--ink-black); min-height: 1.5em; }
+.reply-text { font-family: 'General Sans', sans-serif; font-weight: 600; font-size: 1.1rem; color: var(--ink-black); min-height: 1.4em; }
 .typing { border-right: 2px solid currentColor; }
-.beginning-photo {
-  max-width: 380px; width: 100%;
-  opacity: 0; transform: translateY(20px); transition: opacity 1.2s ease, transform 1.2s ease;
-}
-.beginning-photo.visible { opacity: 1; transform: translateY(0); }
+.beginning-photo { max-width: 340px; width: 100%; }
 .beginning-photo img { width: 100%; border-radius: 4px; display: block; }
 
 /* June 19th */
@@ -93,23 +119,20 @@ h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; }
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   text-align: center; gap: 40px; padding: 80px 8%;
 }
-.date-morph { position: relative; font-family: 'Fraunces', serif; font-weight: 600; font-size: clamp(3rem, 10vw, 6rem); color: var(--muted-gold); height: 1.2em; width: 100%; }
+.date-morph { position: relative; font-family: 'Fraunces', serif; font-weight: 600; font-size: clamp(3rem, 10vw, 6rem); color: var(--amber); height: 1.2em; width: 100%; }
 .date-morph span { position: absolute; left: 50%; top: 0; transform: translateX(-50%); transition: opacity 1.2s ease; }
-.date-old { opacity: 1; }
-.date-new { opacity: 0; }
-.date-morph.flip .date-old { opacity: 0; }
-.date-morph.flip .date-new { opacity: 1; }
-.onemonth-line { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.4rem; opacity: 0; transform: translateY(10px); transition: opacity 1s ease, transform 1s ease; }
+.date-old { opacity: 1; } .date-new { opacity: 0; }
+.date-morph.flip .date-old { opacity: 0; } .date-morph.flip .date-new { opacity: 1; }
+.onemonth-line { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.4rem; opacity: 0; transform: translateY(10px); transition: opacity 1s ease, transform 1s ease; max-width: 600px; }
 .onemonth-line.visible { opacity: 1; transform: translateY(0); }
 .onemonth-photo { max-width: 420px; width: 100%; opacity: 0; transform: translateY(20px); transition: opacity 1.2s ease, transform 1.2s ease; }
 .onemonth-photo.visible { opacity: 1; transform: translateY(0); }
 .onemonth-photo img { width: 100%; border-radius: 4px; display: block; }
 
-/* Five Years */
-#fiveyears { min-height: 60vh; display: flex; align-items: center; justify-content: center; background: var(--ink-black); padding: 60px 8%; }
+/* Five Years placeholder */
+#fiveyears { min-height: 50vh; display: flex; align-items: center; justify-content: center; background: var(--ink-black); padding: 60px 8%; }
 #fiveyears p {
-  font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(1.6rem, 4vw, 2.4rem);
-  color: var(--warm-ivory); text-align: center; max-width: 700px;
-  opacity: 0; transform: translateY(15px); transition: opacity 1.3s ease, transform 1.3s ease;
+  font-family: 'JetBrains Mono', monospace; font-size: 1rem; color: var(--amber); opacity: 0;
+  transition: opacity 1.3s ease;
 }
-#fiveyears p.visible { opacity: 1; transform: translateY(0); }
+#fiveyears p.visible { opacity: 0.6; }
