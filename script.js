@@ -128,7 +128,7 @@ function setupHardYears() {
         }, 1200);
       }
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.25 });
   observer.observe(section);
 }
 
@@ -251,7 +251,7 @@ function onemonthSetup() {
 function setupVersionTag() {
   const versionMap = {
     hero: 'v1.0', beginning: 'v1.0', june19: 'v1.1', onemonth: 'v1.2',
-    spiderman: 'v1.3', dressedforthebit: 'v1.4', titlipurrminder: 'v1.5',
+    spiderman: 'v1.3', dressedforthebit: 'v1.4', family: 'v1.5',
     terrace: 'v1.6', frontrow: 'v1.7', littlethings: 'v1.8',
     milestones: 'v2.0', vrindavan: 'v2.1', finale: 'v2.2'
   };
