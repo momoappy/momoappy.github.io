@@ -72,11 +72,19 @@ h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; }
 .beginning-intro { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; color: var(--warm-ivory); opacity: 0.55; max-width: 500px; }
 .drag-wrap { width: 100%; max-width: 380px; display: flex; justify-content: center; }
 .drag-card {
+  position: relative;
   background: rgba(243, 238, 228, 0.06);
   border: 1px solid rgba(243, 238, 228, 0.15);
   border-radius: 18px; padding: 28px 26px; width: 100%;
   cursor: grab; touch-action: none; user-select: none;
 }
+.stamp {
+  position: absolute; top: 18px; padding: 5px 14px; border: 3px solid;
+  border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-weight: 700;
+  font-size: 1rem; letter-spacing: 0.05em; opacity: 0; pointer-events: none;
+}
+.stamp-like { left: 18px; color: #7FAE8C; border-color: #7FAE8C; transform: rotate(-14deg); }
+.stamp-nope { right: 18px; color: #C97267; border-color: #C97267; transform: rotate(14deg); }
 .drag-card:active { cursor: grabbing; }
 .prompt-label {
   display: block; font-size: 0.75rem; text-transform: uppercase;
@@ -119,7 +127,7 @@ h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; }
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   text-align: center; gap: 40px; padding: 80px 8%;
 }
-.date-morph { position: relative; font-family: 'Fraunces', serif; font-weight: 600; font-size: clamp(3rem, 10vw, 6rem); color: var(--amber); height: 1.2em; width: 100%; }
+.date-morph { position: relative; font-family: 'Fraunces', serif; font-weight: 600; font-size: clamp(1.8rem, 7vw, 3.6rem); color: var(--amber); height: 1.2em; width: 100%; }
 .date-morph span { position: absolute; left: 50%; top: 0; transform: translateX(-50%); transition: opacity 1.2s ease; }
 .date-old { opacity: 1; } .date-new { opacity: 0; }
 .date-morph.flip .date-old { opacity: 0; } .date-morph.flip .date-new { opacity: 1; }
@@ -129,10 +137,101 @@ h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; }
 .onemonth-photo.visible { opacity: 1; transform: translateY(0); }
 .onemonth-photo img { width: 100%; border-radius: 4px; display: block; }
 
-/* Five Years placeholder */
-#fiveyears { min-height: 50vh; display: flex; align-items: center; justify-content: center; background: var(--ink-black); padding: 60px 8%; }
-#fiveyears p {
-  font-family: 'JetBrains Mono', monospace; font-size: 1rem; color: var(--amber); opacity: 0;
-  transition: opacity 1.3s ease;
+.section-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--amber); opacity: 0.6; margin-bottom: 32px; }
+
+/* Spiderman */
+#spiderman {
+  min-height: 80vh; background: var(--ink-black);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 40px; padding: 80px 8%; text-align: center;
 }
-#fiveyears p.visible { opacity: 0.6; }
+.spiderman-line { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.3rem; max-width: 560px; opacity: 0; transform: translateY(10px); transition: opacity 1s ease, transform 1s ease; }
+.spiderman-line.visible { opacity: 1; transform: translateY(0); }
+.spiderman-photo { max-width: 380px; width: 100%; opacity: 0; transform: translateY(20px); transition: opacity 1.2s ease, transform 1.2s ease; }
+.spiderman-photo.visible { opacity: 1; transform: translateY(0); }
+.spiderman-photo img { width: 100%; border-radius: 4px; display: block; }
+
+/* Two photo row (Dressed for the Bit, Front Row) */
+#dressedforthebit, #frontrow {
+  min-height: 80vh; background: var(--ink-black);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 80px 8%; text-align: center;
+}
+.two-photo-row { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; max-width: 700px; }
+.photo-card { flex: 1; min-width: 220px; max-width: 300px; }
+.photo-card img { width: 100%; border-radius: 4px; display: block; transition: transform 0.4s ease; }
+.photo-card:hover img { transform: translateY(-6px); }
+.photo-card p { margin-top: 14px; font-size: 0.95rem; opacity: 0.75; }
+.frontrow-note { margin-top: 28px; font-size: 0.95rem; opacity: 0.6; max-width: 500px; }
+
+/* Titli & Purrminder */
+#titlipurrminder {
+  min-height: 80vh; background: var(--ink-black);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 80px 8%; text-align: center;
+}
+.click-reveal-row { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; max-width: 700px; }
+.click-card { flex: 1; min-width: 220px; max-width: 300px; cursor: pointer; }
+.click-card img { width: 100%; border-radius: 4px; display: block; transition: transform 0.4s ease; }
+.click-card.revealed img { transform: scale(1.03) rotate(-1deg); }
+.reveal-caption {
+  opacity: 0; max-height: 0; overflow: hidden; margin-top: 0;
+  transition: opacity 0.4s ease, max-height 0.4s ease, margin-top 0.4s ease;
+  font-size: 0.95rem; opacity: 0.85;
+}
+.click-card.revealed .reveal-caption { opacity: 0.85; max-height: 200px; margin-top: 14px; }
+.click-hint { margin-top: 24px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--amber); opacity: 0.6; }
+
+/* Gallery */
+#littlethings { min-height: 80vh; background: var(--ink-black); padding: 100px 8%; }
+.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 900px; margin: 0 auto; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1; border-radius: 4px; display: block; transition: transform 0.3s ease; }
+.gallery-item:hover img { transform: scale(1.04); }
+@media (max-width: 700px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* Hard Years */
+#hardyears {
+  min-height: 100vh; background: var(--ink-black);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 60px; padding: 100px 8%;
+}
+.desks-visual { display: flex; align-items: center; justify-content: center; gap: 160px; width: 100%; }
+.desk { width: 60px; height: 60px; border: 1px solid rgba(243,238,228,0.25); transition: transform 2.5s ease; }
+.desks-visual.together .desk-left { transform: translateX(70px); }
+.desks-visual.together .desk-right { transform: translateX(-70px); }
+.hardyears-line {
+  font-family: 'Fraunces', serif; font-style: italic; font-size: 1.3rem; text-align: center; max-width: 560px;
+  opacity: 0; transition: opacity 1.5s ease;
+}
+.hardyears-line.visible { opacity: 0.9; }
+
+/* Milestones */
+#milestones {
+  min-height: 100vh; background: var(--ink-black);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 50px; padding: 100px 8%;
+}
+.achievement, .achievement-pair { width: 100%; max-width: 420px; opacity: 0; transform: translateY(20px); transition: opacity 1s ease, transform 1s ease; }
+.achievement.visible, .achievement-pair.visible { opacity: 1; transform: translateY(0); }
+.achievement img { width: 100%; border-radius: 4px; display: block; }
+.achievement-pair { display: flex; gap: 16px; max-width: 500px; }
+.achievement-pair .achievement { max-width: none; opacity: 1; transform: none; transition: none; }
+.achievement-badge {
+  margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+  color: var(--amber); background: rgba(217,148,74,0.08); border: 1px solid rgba(217,148,74,0.3);
+  border-radius: 6px; padding: 8px 12px; text-align: center;
+}
+
+/* Finale */
+#finale {
+  min-height: 100vh; background: var(--ink-black);
+  display: flex; align-items: center; justify-content: center;
+  padding: 100px 8%; text-align: center;
+}
+.finale-content { max-width: 500px; display: flex; flex-direction: column; align-items: center; gap: 30px; }
+.finale-letter-slot { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: var(--warm-ivory); opacity: 0.4; }
+.counter-label { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--amber); opacity: 0.7; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+#live-counter { font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; color: var(--warm-ivory); font-variant-numeric: tabular-nums; }
+.finale-signoff { font-family: 'Fraunces', serif; font-size: 2rem; color: var(--amber); }
+.finale-continue { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; opacity: 0.8; }
+.finale-yes { color: var(--amber); cursor: pointer; text-decoration: underline; }

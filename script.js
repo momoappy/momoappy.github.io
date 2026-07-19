@@ -64,8 +64,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setupDragCard();
   onemonthSetup();
-  revealOnce(".fullbleed-caption");
-  revealOnce("#fiveyears p");
+  document.querySelectorAll(".fullbleed-caption").forEach(el => revealOnceEl(el));
+  revealOnce(".spiderman-line");
+  revealOnce(".spiderman-photo");
+  setupClickReveal();
+  setupHardYears();
+  setupMilestones();
+  setupCounter();
+  setupFinaleContinue();
   setupVersionTag();
 });
 
@@ -85,8 +91,7 @@ function typeText(element, text, speed) {
   });
 }
 
-function revealOnce(selector, threshold = 0.4) {
-  const el = document.querySelector(selector);
+function revealOnceEl(el, threshold = 0.4) {
   if (!el) return;
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -99,10 +104,81 @@ function revealOnce(selector, threshold = 0.4) {
   observer.observe(el);
 }
 
+function revealOnce(selector, threshold = 0.4) {
+  document.querySelectorAll(selector).forEach(el => revealOnceEl(el, threshold));
+}
+
+function setupClickReveal() {
+  document.querySelectorAll('.click-card').forEach(card => {
+    card.addEventListener('click', () => card.classList.toggle('revealed'));
+  });
+}
+
+function setupHardYears() {
+  const section = document.getElementById('hardyears');
+  if (!section) return;
+  let played = false;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !played) {
+        played = true;
+        document.querySelector('.desks-visual').classList.add('together');
+        setTimeout(() => {
+          document.querySelector('.hardyears-line').classList.add('visible');
+        }, 1200);
+      }
+    });
+  }, { threshold: 0.5 });
+  observer.observe(section);
+}
+
+function setupMilestones() {
+  document.querySelectorAll('#milestones .achievement, #milestones .achievement-pair').forEach((el, i) => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => el.classList.add('visible'), i * 100);
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    observer.observe(el);
+  });
+}
+
+function setupCounter() {
+  const el = document.getElementById('live-counter');
+  if (!el) return;
+  const start = new Date('2021-07-19T00:00:00');
+  function tick() {
+    const now = new Date();
+    let diff = Math.floor((now - start) / 1000);
+    const days = Math.floor(diff / 86400); diff -= days * 86400;
+    const hours = Math.floor(diff / 3600); diff -= hours * 3600;
+    const mins = Math.floor(diff / 60); diff -= mins * 60;
+    const secs = diff;
+    el.textContent = `${days}d ${String(hours).padStart(2,'0')}h ${String(mins).padStart(2,'0')}m ${String(secs).padStart(2,'0')}s`;
+  }
+  tick();
+  setInterval(tick, 1000);
+}
+
+function setupFinaleContinue() {
+  const btn = document.querySelector('.finale-yes');
+  if (!btn) return;
+  btn.addEventListener('click', function() {
+    document.getElementById('version-tag').textContent = 'v6.0';
+    this.textContent = 'installing year six...';
+    this.style.pointerEvents = 'none';
+  });
+}
+
 function setupDragCard() {
   const card = document.querySelector('.drag-card');
   const afterContent = document.querySelector('.beginning-after');
   const replyText = document.querySelector('.reply-text');
+  const likeStamp = document.querySelector('.stamp-like');
+  const nopeStamp = document.querySelector('.stamp-nope');
   if (!card) return;
   let startX = 0, currentX = 0, dragging = false, resolved = false;
 
@@ -117,15 +193,17 @@ function setupDragCard() {
     const clientX = (e.touches ? e.touches[0].clientX : e.clientX);
     currentX = clientX - startX;
     card.style.transform = `translateX(${currentX}px) rotate(${currentX / 15}deg)`;
+    const ratio = Math.min(Math.abs(currentX) / 120, 1);
+    likeStamp.style.opacity = currentX > 0 ? ratio : 0;
+    nopeStamp.style.opacity = currentX < 0 ? ratio : 0;
   }
   function onUp() {
     if (!dragging || resolved) return;
     dragging = false;
-    if (Math.abs(currentX) > 120) {
+    if (currentX > 120) {
       resolved = true;
-      const dir = currentX > 0 ? 1 : -1;
       card.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
-      card.style.transform = `translateX(${dir * 600}px) rotate(${dir * 25}deg)`;
+      card.style.transform = `translateX(600px) rotate(25deg)`;
       card.style.opacity = '0';
       setTimeout(() => {
         afterContent.classList.add('visible');
@@ -134,6 +212,8 @@ function setupDragCard() {
     } else {
       card.style.transition = 'transform 0.4s ease';
       card.style.transform = 'translateX(0) rotate(0)';
+      likeStamp.style.opacity = 0;
+      nopeStamp.style.opacity = 0;
     }
     currentX = 0;
   }
@@ -167,13 +247,22 @@ function onemonthSetup() {
 }
 
 function setupVersionTag() {
-  const versionMap = { hero: 'v1.0', beginning: 'v1.0', june19: 'v1.1', onemonth: 'v1.2', fiveyears: 'v1.3' };
+  const versionMap = {
+    hero: 'v1.0', beginning: 'v1.0', june19: 'v1.1', onemonth: 'v1.2',
+    spiderman: 'v1.3', dressedforthebit: 'v1.4', titlipurrminder: 'v1.5',
+    terrace: 'v1.6', frontrow: 'v1.7', littlethings: 'v1.8',
+    milestones: 'v2.0', vrindavan: 'v2.1', finale: 'v2.2'
+  };
   const tag = document.getElementById('version-tag');
   const sections = document.querySelectorAll('section[id]');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting && versionMap[entry.target.id]) {
-        tag.textContent = versionMap[entry.target.id];
+      if (!entry.isIntersecting) return;
+      if (entry.target.id === 'hardyears') {
+        tag.style.opacity = '0';
+      } else {
+        tag.style.opacity = '0.7';
+        if (versionMap[entry.target.id]) tag.textContent = versionMap[entry.target.id];
       }
     });
   }, { threshold: 0.5 });
