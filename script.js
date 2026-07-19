@@ -236,10 +236,12 @@ function onemonthSetup() {
         played = true;
         const dateMorph = document.querySelector(".date-morph");
         const line = document.querySelector(".onemonth-line");
-        const photo = document.querySelector(".onemonth-photo");
+        const photos = document.querySelectorAll(".onemonth-photo");
         setTimeout(() => dateMorph.classList.add("flip"), 600);
         setTimeout(() => line.classList.add("visible"), 1800);
-        setTimeout(() => photo.classList.add("visible"), 2600);
+        setTimeout(() => { if (photos[0]) photos[0].classList.add("visible"); }, 2600);
+        setTimeout(() => { if (photos[1]) photos[1].classList.add("visible"); }, 3400);
+        setTimeout(() => { if (photos[2]) photos[2].classList.add("visible"); }, 4200);
       }
     });
   }, { threshold: 0.4 });

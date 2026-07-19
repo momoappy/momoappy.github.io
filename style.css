@@ -136,6 +136,8 @@ h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; }
 .onemonth-photo { max-width: 420px; width: 100%; opacity: 0; transform: translateY(20px); transition: opacity 1.2s ease, transform 1.2s ease; }
 .onemonth-photo.visible { opacity: 1; transform: translateY(0); }
 .onemonth-photo img { width: 100%; border-radius: 4px; display: block; }
+.onemonth-flash { max-width: 300px; margin-top: 8px; }
+.flash-caption { margin-top: 10px; font-size: 0.85rem; opacity: 0.6; font-style: normal; }
 
 .section-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--amber); opacity: 0.6; margin-bottom: 32px; }
 
@@ -162,7 +164,6 @@ h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; }
 .photo-card img { width: 100%; border-radius: 4px; display: block; transition: transform 0.4s ease; }
 .photo-card:hover img { transform: translateY(-6px); }
 .photo-card p { margin-top: 14px; font-size: 0.95rem; opacity: 0.75; }
-.frontrow-note { margin-top: 28px; font-size: 0.95rem; opacity: 0.6; max-width: 500px; }
 
 /* Titli & Purrminder */
 #titlipurrminder {
