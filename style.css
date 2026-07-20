@@ -203,10 +203,8 @@ h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; }
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 60px; padding: 100px 8%;
 }
-.desks-visual { display: flex; align-items: center; justify-content: center; gap: 160px; width: 100%; }
-.desk { width: 60px; height: 60px; border: 1px solid rgba(243,238,228,0.25); transition: transform 2.5s ease; }
-.desks-visual.together .desk-left { transform: translateX(70px); }
-.desks-visual.together .desk-right { transform: translateX(-70px); }
+.study-scene { width: 100%; max-width: 560px; opacity: 0; transition: opacity 1.8s ease; }
+.study-scene.visible { opacity: 1; }
 .hardyears-line {
   font-family: 'Fraunces', serif; font-style: italic; font-size: 1.3rem; text-align: center; max-width: 560px;
   opacity: 0; transition: opacity 1.5s ease;

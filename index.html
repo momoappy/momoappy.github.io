@@ -180,10 +180,58 @@
 </section>
 
 <section id="hardyears">
-  <div class="desks-visual">
-    <div class="desk desk-left"></div>
-    <div class="desk desk-right"></div>
-  </div>
+  <svg class="study-scene" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+    <style>
+      .glow { animation: pulse 2.4s ease-in-out infinite; }
+      .glow2 { animation: pulse 2.4s ease-in-out infinite; animation-delay: 1.2s; }
+      @keyframes pulse { 0%,100% { opacity: 0.35; } 50% { opacity: 0.9; } }
+      .dot { animation: travel 3s ease-in-out infinite; }
+      .dot2 { animation: travel 3s ease-in-out infinite; animation-delay: 1s; }
+      .dot3 { animation: travel 3s ease-in-out infinite; animation-delay: 2s; }
+      @keyframes travel { 0% { opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; } }
+    </style>
+    <line x1="300" y1="30" x2="300" y2="270" stroke="rgba(243,238,228,0.15)" stroke-width="1" stroke-dasharray="4 6"/>
+    <rect x="70" y="30" width="90" height="55" rx="6" fill="rgba(217,148,74,0.05)" stroke="rgba(243,238,228,0.15)"/>
+    <circle cx="145" cy="55" r="12" fill="#F3EEE4" opacity="0.7"/>
+    <circle cx="85" cy="45" r="1.4" fill="#F3EEE4" opacity="0.5"/>
+    <circle cx="95" cy="65" r="1.2" fill="#F3EEE4" opacity="0.4"/>
+    <rect x="60" y="212" width="150" height="7" fill="rgba(243,238,228,0.15)"/>
+    <line x1="70" y1="219" x2="70" y2="265" stroke="rgba(243,238,228,0.15)" stroke-width="3"/>
+    <line x1="200" y1="219" x2="200" y2="265" stroke="rgba(243,238,228,0.15)" stroke-width="3"/>
+    <line x1="90" y1="212" x2="90" y2="178" stroke="rgba(243,238,228,0.2)" stroke-width="3"/>
+    <path d="M 75 178 L 105 178 L 98 160 L 82 160 Z" fill="rgba(243,238,228,0.15)"/>
+    <ellipse class="glow" cx="90" cy="182" rx="26" ry="14" fill="#D9944A" opacity="0.35"/>
+    <path d="M 108 212 Q 108 155 145 155 Q 182 155 182 212 Z" fill="rgba(243,238,228,0.14)"/>
+    <ellipse cx="145" cy="140" rx="27" ry="42" fill="rgba(243,238,228,0.16)"/>
+    <circle cx="145" cy="130" r="17" fill="#0B0B0C"/>
+    <g transform="rotate(-8 178 200)">
+      <rect x="165" y="180" width="26" height="46" rx="4" fill="rgba(11,11,12,0.6)" stroke="rgba(243,238,228,0.25)"/>
+      <rect class="glow2" x="168" y="184" width="20" height="38" rx="2" fill="#D9944A" opacity="0.5"/>
+    </g>
+    <rect x="440" y="30" width="90" height="55" rx="6" fill="rgba(217,148,74,0.05)" stroke="rgba(243,238,228,0.15)"/>
+    <circle cx="455" cy="55" r="12" fill="#F3EEE4" opacity="0.7"/>
+    <circle cx="515" cy="45" r="1.4" fill="#F3EEE4" opacity="0.5"/>
+    <circle cx="505" cy="65" r="1.2" fill="#F3EEE4" opacity="0.4"/>
+    <rect x="390" y="212" width="150" height="7" fill="rgba(243,238,228,0.15)"/>
+    <line x1="400" y1="219" x2="400" y2="265" stroke="rgba(243,238,228,0.15)" stroke-width="3"/>
+    <line x1="530" y1="219" x2="530" y2="265" stroke="rgba(243,238,228,0.15)" stroke-width="3"/>
+    <line x1="510" y1="212" x2="510" y2="178" stroke="rgba(243,238,228,0.2)" stroke-width="3"/>
+    <path d="M 495 178 L 525 178 L 518 160 L 502 160 Z" fill="rgba(243,238,228,0.15)"/>
+    <ellipse class="glow2" cx="510" cy="182" rx="26" ry="14" fill="#D9944A" opacity="0.35"/>
+    <path d="M 418 212 Q 418 155 455 155 Q 492 155 492 212 Z" fill="rgba(243,238,228,0.14)"/>
+    <circle cx="455" cy="133" r="18" fill="rgba(243,238,228,0.16)"/>
+    <path d="M 440 120 Q 440 103 455 103 Q 470 103 470 120" fill="none" stroke="rgba(243,238,228,0.16)" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="447" cy="134" r="6" fill="none" stroke="rgba(11,11,12,0.5)" stroke-width="2"/>
+    <circle cx="463" cy="134" r="6" fill="none" stroke="rgba(11,11,12,0.5)" stroke-width="2"/>
+    <line x1="453" y1="134" x2="457" y2="134" stroke="rgba(11,11,12,0.5)" stroke-width="2"/>
+    <g transform="rotate(8 422 200)">
+      <rect x="409" y="180" width="26" height="46" rx="4" fill="rgba(11,11,12,0.6)" stroke="rgba(243,238,228,0.25)"/>
+      <rect class="glow" x="412" y="184" width="20" height="38" rx="2" fill="#D9944A" opacity="0.5"/>
+    </g>
+    <circle class="dot" cx="260" cy="150" r="3" fill="#D9944A"/>
+    <circle class="dot2" cx="300" cy="140" r="3" fill="#D9944A"/>
+    <circle class="dot3" cx="340" cy="150" r="3" fill="#D9944A"/>
+  </svg>
   <p class="hardyears-line">Four years. Two study tables in the same city, one video call left open every single night — just so neither of us was doing it alone.</p>
 </section>
 

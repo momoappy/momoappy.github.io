@@ -122,7 +122,7 @@ function setupHardYears() {
     entries.forEach((entry) => {
       if (entry.isIntersecting && !played) {
         played = true;
-        document.querySelector('.desks-visual').classList.add('together');
+        document.querySelector('.study-scene').classList.add('visible');
         setTimeout(() => {
           document.querySelector('.hardyears-line').classList.add('visible');
         }, 1200);
