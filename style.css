@@ -128,9 +128,9 @@ h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; }
   text-align: center; gap: 40px; padding: 80px 8%;
 }
 .date-morph { position: relative; font-family: 'Fraunces', serif; font-weight: 600; font-size: clamp(1.8rem, 7vw, 3.6rem); color: var(--amber); height: 1.2em; width: 100%; }
-.date-morph span { position: absolute; left: 50%; top: 0; transform: translateX(-50%); transition: opacity 1.2s ease; }
-.date-old { opacity: 1; } .date-new { opacity: 0; }
-.date-morph.flip .date-old { opacity: 0; } .date-morph.flip .date-new { opacity: 1; }
+.date-morph span { position: absolute; left: 50%; top: 0; transform: translateX(-50%) translateY(0); transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1), transform 1.4s cubic-bezier(0.4, 0, 0.2, 1); }
+.date-old { opacity: 1; } .date-new { opacity: 0; transform: translateX(-50%) translateY(16px); }
+.date-morph.flip .date-old { opacity: 0; transform: translateX(-50%) translateY(-16px); } .date-morph.flip .date-new { opacity: 1; transform: translateX(-50%) translateY(0); }
 .onemonth-line { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.4rem; opacity: 0; transform: translateY(10px); transition: opacity 1s ease, transform 1s ease; max-width: 600px; }
 .onemonth-line.visible { opacity: 1; transform: translateY(0); }
 .onemonth-photo { max-width: 420px; width: 100%; opacity: 0; transform: translateY(20px); transition: opacity 1.2s ease, transform 1.2s ease; }
@@ -223,6 +223,13 @@ h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; }
   opacity: 0; transition: opacity 1.5s ease;
 }
 .hardyears-line.visible { opacity: 0.9; }
+.hardyears-note {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--amber);
+  opacity: 0; transition: opacity 1.2s ease; margin-top: 50px;
+}
+.hardyears-line.visible ~ .hardyears-note { opacity: 0.7; }
+.hardyears-photos { margin-top: 20px; max-width: 700px; }
+.hardyears-photos img { height: 160px; }
 
 /* Milestones */
 #milestones {
