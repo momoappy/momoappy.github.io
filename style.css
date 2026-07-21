@@ -256,8 +256,18 @@ h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; }
   display: flex; align-items: center; justify-content: center;
   padding: 100px 8%; text-align: center;
 }
-.finale-content { max-width: 500px; display: flex; flex-direction: column; align-items: center; gap: 30px; }
-.finale-letter-slot { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: var(--warm-ivory); opacity: 0.4; }
+.finale-content { max-width: 520px; display: flex; flex-direction: column; align-items: center; gap: 34px; }
+.letter { display: flex; flex-direction: column; gap: 20px; }
+.letter-line {
+  font-family: 'Fraunces', serif; font-style: italic; font-size: 1.4rem; line-height: 1.5;
+  color: var(--warm-ivory); opacity: 0; transform: translateY(10px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+.letter-line.visible { opacity: 1; transform: translateY(0); }
+.counter-block, .finale-signoff, .finale-continue {
+  opacity: 0; transform: translateY(10px); transition: opacity 1.2s ease, transform 1.2s ease;
+}
+.counter-block.visible, .finale-signoff.visible, .finale-continue.visible { opacity: 1; transform: translateY(0); }
 .counter-label { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--amber); opacity: 0.7; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
 #live-counter { font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; color: var(--warm-ivory); font-variant-numeric: tabular-nums; }
 .finale-signoff { font-family: 'Fraunces', serif; font-size: 2rem; color: var(--amber); }

@@ -72,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupMilestones();
   setupCounter();
   setupFinaleContinue();
+  setupFinaleSequence();
   setupVersionTag();
 });
 
@@ -158,6 +159,35 @@ function setupCounter() {
   }
   tick();
   setInterval(tick, 1000);
+}
+
+function setupFinaleSequence() {
+  const section = document.getElementById('finale');
+  if (!section) return;
+  let played = false;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !played) {
+        played = true;
+        const lines = document.querySelectorAll('.letter-line');
+        const counter = document.querySelector('.counter-block');
+        const signoff = document.querySelector('.finale-signoff');
+        const cont = document.querySelector('.finale-continue');
+        let delay = 400;
+        lines.forEach((line) => {
+          setTimeout(() => line.classList.add('visible'), delay);
+          delay += 2200;
+        });
+        delay += 800;
+        setTimeout(() => counter.classList.add('visible'), delay);
+        delay += 1400;
+        setTimeout(() => signoff.classList.add('visible'), delay);
+        delay += 1200;
+        setTimeout(() => cont.classList.add('visible'), delay);
+      }
+    });
+  }, { threshold: 0.3 });
+  observer.observe(section);
 }
 
 function setupFinaleContinue() {
@@ -248,9 +278,9 @@ function onemonthSetup() {
 function setupVersionTag() {
   const versionMap = {
     hero: 'v1.0', beginning: 'v1.0', june19: 'v1.1', onemonth: 'v1.2',
-    spiderman: 'v1.3', dressedforthebit: 'v1.4', family: 'v1.5',
-    terrace: 'v1.6', frontrow: 'v1.7', littlethings: 'v1.8',
-    milestones: 'v2.0', vrindavan: 'v2.1', finale: 'v2.2'
+    spiderman: 'v1.3', dressedforthebit: 'v1.4', milestones: 'v1.5',
+    family: 'v1.6', terrace: 'v1.7', frontrow: 'v1.8',
+    littlethings: 'v1.9', vrindavan: 'v2.0', finale: 'v2.1'
   };
   const tag = document.getElementById('version-tag');
   const sections = document.querySelectorAll('section[id]');
