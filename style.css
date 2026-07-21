@@ -110,6 +110,7 @@ h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; }
 #june19, #terrace, #vrindavan { position: relative; min-height: 100vh; display: flex; align-items: flex-end; }
 .fullbleed-photo { position: absolute; inset: 0; overflow: hidden; }
 .fullbleed-photo img { width: 100%; height: 100%; object-fit: cover; }
+#vrindavan .fullbleed-photo img { object-position: 30% center; }
 .fullbleed-photo::after {
   content: ""; position: absolute; inset: 0;
   background: radial-gradient(ellipse at center, transparent 35%, rgba(11,11,12,0.8) 100%);
@@ -202,11 +203,11 @@ h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; }
 }
 .cluster-photos { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 .cluster-photos img {
-  height: 220px; width: auto; max-width: 100%; border-radius: 4px; object-fit: cover;
+  height: 300px; width: auto; max-width: 100%; border-radius: 4px; object-fit: cover;
   transition: transform 0.3s ease;
 }
 .cluster-photos img:hover { transform: translateY(-6px); }
-@media (max-width: 700px) { .cluster-photos img { height: 160px; } }
+@media (max-width: 700px) { .cluster-photos img { height: 220px; } }
 
 .family-subtitle { font-size: 1rem; opacity: 0.7; max-width: 500px; margin: 40px auto; text-align: center; }
 
@@ -241,7 +242,8 @@ h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; }
 .achievement.visible, .achievement-pair.visible { opacity: 1; transform: translateY(0); }
 .achievement img { width: 100%; border-radius: 4px; display: block; }
 .achievement-pair { display: flex; gap: 16px; max-width: 500px; }
-.achievement-pair .achievement { max-width: none; opacity: 1; transform: none; transition: none; }
+.achievement-pair .achievement { max-width: none; opacity: 1; transform: none; transition: none; flex: 1; }
+.achievement-pair .achievement img { width: 100%; height: 260px; object-fit: cover; }
 .achievement-badge {
   margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
   color: var(--amber); background: rgba(217,148,74,0.08); border: 1px solid rgba(217,148,74,0.3);

@@ -9,9 +9,9 @@ document.body.style.overflow = 'hidden';
 const bootLines = [
   "$ ./us.exe --run",
   "",
-  "> compiling five years of us...",
+  "> compiling five years of Appy & Momo ...",
   "> resolving dependency: hinge@2021... installed",
-  "> resolving dependency: unusual_skills.prompt... found",
+  "> resolving dependency: right_swipe... found",
   "> 1,825 days loaded",
   "> bugs found: 0 (still looking)",
   "> status: soulmate.exe running successfully"
@@ -122,10 +122,7 @@ function setupHardYears() {
     entries.forEach((entry) => {
       if (entry.isIntersecting && !played) {
         played = true;
-        document.querySelector('.study-scene').classList.add('visible');
-        setTimeout(() => {
-          document.querySelector('.hardyears-line').classList.add('visible');
-        }, 1200);
+        document.querySelector('.hardyears-line').classList.add('visible');
       }
     });
   }, { threshold: 0.25 });
